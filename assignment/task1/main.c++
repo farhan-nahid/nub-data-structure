@@ -14,10 +14,10 @@ Output min_and_max(int arr[], int size){
     outputObj.max = arr[0];
 
     for(int i = 0; i < size; i++){
-        if(outputObj.min < arr[i]){
+        if(arr[i] < outputObj.min){
             outputObj.min = arr[i];
         }
-        if(outputObj.max > arr[i]){
+        if(arr[i] > outputObj.max){
             outputObj.max = arr[i];
         }
     }
