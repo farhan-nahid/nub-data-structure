@@ -28,10 +28,10 @@ Output min_and_max(int arr[], int size){
 int main(){
     int arr[10] = {1,2,3,4,5,6,7,8,9,10}, size = 10;
 
-    Output output =  min_and_max(arr, size);
+    Output result =  min_and_max(arr, size);
 
-    cout << "Min value is\t" << output.min << endl;
-    cout << "Max value is\t" << output.max << endl;
+    cout << "Min value is\t" << result.min << endl;
+    cout << "Max value is\t" << result.max << endl;
 
     return 0;
 }
