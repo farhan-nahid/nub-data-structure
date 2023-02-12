@@ -9,11 +9,13 @@ int main (){
         cin >> input[i];
     }
 
+    cout << "[ ";
+
     for(int x:input){
-        cout << x * x << " ";
+        cout << "'" << x * x << "', ";
     }
 
-    cout << endl;
+    cout << "]" << endl;
 
     return 0;
 }
