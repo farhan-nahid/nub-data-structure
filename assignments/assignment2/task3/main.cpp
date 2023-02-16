@@ -5,6 +5,8 @@ using namespace std;
 int main (){
     int input[5] = {};
 
+    cout << "Enter your inputs in number" << endl;
+
     for(int i = 0; i < 5; i++){
         cin >> input[i];
     }

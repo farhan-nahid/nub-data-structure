@@ -1,10 +1,9 @@
 #include <iostream>
-#include <stack>
 
 using namespace std;
 
 // this function counts the number of even numbers in both array
-int getEvenNumberCount(int arr1[], int arr2[], int size1, int size2) {
+int get_even_number_count(int arr1[], int arr2[], int size1, int size2) {
     int evenNumberCount = 0;
   
     for (int i = 0; i < size1; i++) {
@@ -21,10 +20,10 @@ int getEvenNumberCount(int arr1[], int arr2[], int size1, int size2) {
     return evenNumberCount;
 }
 
-
+// this function choose even number
 void choose_even_number (int arr1[], int arr2[], int size1, int size2) {
     // get count
-    int evenNumberCount = getEvenNumberCount(arr1, arr2, size1, size2);
+    int evenNumberCount = get_even_number_count(arr1, arr2, size1, size2);
     // declare new array
     int totalEvenNumberArray[evenNumberCount];
     int totalArrayIndexCount = 0;
@@ -48,7 +47,7 @@ void choose_even_number (int arr1[], int arr2[], int size1, int size2) {
 
 
 int main(){
-    int arr1[5] = {1,2,3,4,5}, arr2[5] = {6,7,8,9,10};
+    int arr1[9] = {1,2,3,4,5,6,7,8,9}, arr2[7] = {10,11,12,-13,-14,-15,-16};
 
     choose_even_number(arr1, arr2, sizeof(arr1) / sizeof(arr1[0]), sizeof(arr2) / sizeof(arr2[0])); 
 
