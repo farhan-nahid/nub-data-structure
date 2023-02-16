@@ -4,8 +4,8 @@
 using namespace std;
 
 int main () {
-    int arr1[3] = {1,2,3};
-    int arr2[3] = {4,5,6};
+    int arr1[4] = {1,4,7,5};
+    int arr2[4] = {6,1,3,9};
 
     int arr1_size = sizeof(arr1) / sizeof(arr1[0]);
     int arr2_size = sizeof(arr2) / sizeof(arr2[0]);
