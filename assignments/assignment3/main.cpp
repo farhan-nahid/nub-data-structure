@@ -75,6 +75,55 @@ void nodeAt(Node *root, int idx){
 
 }
 
+// updates the element of the Node at the given index.
+// Returns the old element that was replaced. For invalid index return None.
+// parameter{} index, element
+void setNode(Node *root,int idx, int elem){
+    Node *temp = root;
+    int i = 0;
+
+    while(i < idx){
+        if(temp == nullptr){
+            cout << "None" << endl;
+            return;
+        }
+        temp = temp->next;
+        i+=1;
+    }
+
+    cout << "old element " << temp->elem << endl;
+    temp->elem = elem;  
+    cout << "replaced element " << temp->elem << endl;  
+}
+
+
+// returns the index of the Node containing the given element.
+// if the element does not exist in the List, return -1.
+void indexOf(Node *root, int elem){
+    Node *temp = root;
+    int index = 0;
+    bool isMatched = false;
+
+    while(true){
+        if(temp == nullptr){
+            break;
+        } else {
+            if(temp->elem == elem){
+                isMatched = true;
+                break;
+            }
+            temp = temp->next;
+            index +=1;
+        }
+    } 
+
+    if(isMatched){
+        cout << index << endl;
+    } else{
+        cout << -1 << endl;
+    }
+}
+
 
 int main(){
     int arr[5] = {3,5,6,8,9};
@@ -85,7 +134,9 @@ int main(){
     countNode(root);
 
     nodeAt(root, 9);
-
+    setNode(root, 1, 1);
+    indexOf(root, 6);
+    indexOf(root, 90);
 
     return 0;
 }
