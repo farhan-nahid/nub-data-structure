@@ -8,6 +8,7 @@ struct Node {
 };
 
 
+
 void printList(Node* root){
     Node *temp = root;
     while(true){
@@ -21,8 +22,19 @@ void printList(Node* root){
     cout << endl;
 }
 
+
+
+Node *create_node(int elem){
+    Node *new_node = new Node;
+    new_node->elem = elem;
+    new_node->next = NULL;
+    return new_node;
+}
+
+
+
 // Count the number of nodes in the list
-void countNode(Node *root){
+int countNode(Node *root){
     Node *temp = root;
     int count = 0;
 
@@ -35,8 +47,10 @@ void countNode(Node *root){
         }
     } 
 
-   cout << "Total node number is " << count << endl;
+   return count;
 }
+
+
 
 // Print elements in the list
 Node* makeList(int arr[]){
@@ -57,6 +71,8 @@ Node* makeList(int arr[]){
     return root;
 }
 
+
+
 // returns the reference of the Node at the given index. For invalid index return None.
 void nodeAt(Node *root, int idx){
     Node *temp = root;
@@ -74,6 +90,8 @@ void nodeAt(Node *root, int idx){
     cout << temp->elem << endl;
 
 }
+
+
 
 // updates the element of the Node at the given index.
 // Returns the old element that was replaced. For invalid index return None.
@@ -95,6 +113,7 @@ void setNode(Node *root,int idx, int elem){
     temp->elem = elem;  
     cout << "replaced element " << temp->elem << endl;  
 }
+
 
 
 // returns the index of the Node containing the given element.
@@ -124,6 +143,8 @@ void indexOf(Node *root, int elem){
     }
 }
 
+
+
 // returns true if the element exists in the List, return false otherwise.
 void contains(Node *root, int elem){
     Node *temp = root;
@@ -151,18 +172,81 @@ void contains(Node *root, int elem){
 }
 
 
+
+// inserts Node containing the given element at the given index
+// Check validity of index.
+void insertNode(Node *root, int elem, int idx){
+    int listLength = countNode(root);
+
+    if(listLength < idx){
+        cout << "Invalid Position" << endl;
+        return;
+    }
+
+    Node* new_node = create_node(elem);
+  
+    Node *temp = root, *next, *prev;
+    int index = 1;
+    while(index < idx){
+        if(temp == nullptr){
+            break;
+        } else {
+            next = temp->next->next;
+            prev = temp;
+            temp = temp->next;
+            index +=1;
+        }
+    } 
+    prev->next = new_node;
+    new_node->next = next;
+}
+
+
+
+// removes Node at the given index. returns element of the removed node.
+// Check validity of index. return None if index is invalid.
+void removeNode(Node *root, int idx){
+    int listLength = countNode(root);
+
+    if(listLength < idx){
+        cout << "None. Invalid Position" << endl;
+        return;
+    }
+    Node *temp = root, *prev;
+    int index = 1;
+    while(index < idx){
+        if(temp == nullptr){
+            break;
+        } else {
+            prev = temp;
+            temp = temp->next;
+            index +=1;
+        }
+    } 
+
+    prev->next = temp->next;
+}
+
+
+
 int main(){
     int arr[5] = {3,5,6,8,9};
 
     Node *root  = makeList(arr);
 
     printList(root);
-    countNode(root);
+    int count = countNode(root);
+    cout << "Total node number is " << count << endl;
 
     nodeAt(root, 9);
     setNode(root, 1, 1);
     indexOf(root, 6);
     indexOf(root, 90);
+    contains(root, 6);
+    insertNode(root, 90, 3);
+    printList(root);
+    removeNode(root, 3);
+    printList(root);
 
     return 0;
 }
