@@ -124,6 +124,32 @@ void indexOf(Node *root, int elem){
     }
 }
 
+// returns true if the element exists in the List, return false otherwise.
+void contains(Node *root, int elem){
+    Node *temp = root;
+    int index = 0;
+    bool isMatched = false;
+
+    while(true){
+        if(temp == nullptr){
+            break;
+        } else {
+            if(temp->elem == elem){
+                isMatched = true;
+                break;
+            }
+            temp = temp->next;
+            index +=1;
+        }
+    } 
+
+    if(isMatched){
+        cout << "True" << endl;
+    } else{
+        cout << "False" << endl;
+    }
+}
+
 
 int main(){
     int arr[5] = {3,5,6,8,9};
