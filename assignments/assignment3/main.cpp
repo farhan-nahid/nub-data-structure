@@ -9,30 +9,6 @@ struct Node {
 
 
 
-void printList(Node* root){
-    Node *temp = root;
-    while(true){
-        if(temp == nullptr){
-            break;
-        } else{
-            cout<<temp->elem<<" ";
-            temp = temp->next;
-        }
-    } 
-    cout << endl;
-}
-
-
-
-Node *create_node(int elem){
-    Node *new_node = new Node;
-    new_node->elem = elem;
-    new_node->next = NULL;
-    return new_node;
-}
-
-
-
 // Count the number of nodes in the list
 int countNode(Node *root){
     Node *temp = root;
@@ -48,6 +24,50 @@ int countNode(Node *root){
     } 
 
    return count;
+}
+
+
+
+// Print elements in the list
+void printList(Node* root){
+    Node *temp = root;
+    while(true){
+        if(temp == nullptr){
+            break;
+        } else{
+            cout<<temp->elem<<" ";
+            temp = temp->next;
+        }
+    } 
+    cout << endl;
+}
+
+
+
+// returns the reference of the Node at the given index. For invalid index return None.
+void nodeAt(Node *root, int idx){
+    Node *temp = root;
+    int i = 0;
+
+    while(i < idx){
+        if(temp == nullptr){
+            cout << "None" << endl;
+            return;
+        }
+        temp = temp->next;
+        i+=1;
+    }
+
+    cout << temp->elem << endl;
+
+}
+
+
+Node *create_node(int elem){
+    Node *new_node = new Node;
+    new_node->elem = elem;
+    new_node->next = NULL;
+    return new_node;
 }
 
 
@@ -69,26 +89,6 @@ Node* makeList(int arr[]){
     }
 
     return root;
-}
-
-
-
-// returns the reference of the Node at the given index. For invalid index return None.
-void nodeAt(Node *root, int idx){
-    Node *temp = root;
-    int i = 0;
-
-    while(i < idx){
-        if(temp == nullptr){
-            cout << "None" << endl;
-            return;
-        }
-        temp = temp->next;
-        i+=1;
-    }
-
-    cout << temp->elem << endl;
-
 }
 
 
@@ -173,6 +173,42 @@ void contains(Node *root, int elem){
 
 
 
+// Makes a duplicate copy of the given List. Returns the reference of the duplicate list.
+Node* copyList(Node* root) {
+    Node* newRoot = nullptr;
+    Node* tail = nullptr;
+    while (root != nullptr) {
+        Node* newNode = new Node();
+        newNode->elem = root->elem;
+        if (newRoot == nullptr) {
+            newRoot = newNode;
+            tail = newNode;
+        } else {
+            tail->next = newNode;
+            tail = newNode;
+        }
+        root = root->next;
+    }
+    return newRoot;
+}
+
+
+
+// Makes a reversed copy of the given List. Returns the head reference of the reversed list.
+Node* reverseList(Node* root) {
+    Node* reversedRoot = nullptr;
+    while (root != nullptr) {
+        Node* newNode = new Node();
+        newNode->elem = root->elem;
+        newNode->next = reversedRoot;
+        reversedRoot = newNode;
+        root = root->next;
+    }
+    return reversedRoot;
+}
+
+
+
 // inserts Node containing the given element at the given index
 // Check validity of index.
 void insertNode(Node *root, int elem, int idx){
@@ -247,6 +283,12 @@ int main(){
     printList(root);
     removeNode(root, 3);
     printList(root);
+
+    Node* copiedRoot = copyList(root);
+    printList(copiedRoot);
+
+    Node* reversedRoot = reverseList(root);
+    printList(reversedRoot);
 
     return 0;
 }
