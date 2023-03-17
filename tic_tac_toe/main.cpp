@@ -3,8 +3,22 @@
 using namespace std;
 
 char turn = 'X';
-bool is_success = false;
+bool is_success = true;
 
+
+
+// print error message
+void error_message(){
+    system("clear");
+    cout << "Invalid Choice ! " << endl; 
+    cout << "Please Try again !!! " << endl;
+    is_success = false;
+    return;
+}
+
+
+
+// print the board
 void print_board(char board[3][3]){
     if(is_success){
         system("clear");
@@ -26,7 +40,10 @@ void print_board(char board[3][3]){
     cout << "     " << '|' << "     " << '|' << "     " << endl;
 }
 
-void player_turn(char board[3][3]){
+
+
+// decide with player will turn next
+void decide_player_turn(char board[3][3]){
     string player1 = "Player 1 [X]", player2 = "Player 2 [O]";
    
     int choice, row, column;
@@ -81,9 +98,13 @@ void player_turn(char board[3][3]){
       
         default:
             cout << "Invalid Choice" << endl;
+            is_success = false;
             break;
     }
 
+    if(!is_success){
+      return error_message();
+    }
     
     if(turn == 'X' && (board[row][column] != 'X' && board[row][column] != 'O')) {
         board[row][column] = 'X';
@@ -95,11 +116,10 @@ void player_turn(char board[3][3]){
         turn = 'X';
         is_success = true;
     } else {
-        cout << "Invalid Choice ! " << endl; 
-        cout << "Please Try again !!! " << endl;
-        is_success = false;
+        error_message();
     }
 }
+
 
 int main(){
     char board[3][3] = {{'1','2','3'}, {'4','5','6'}, {'7','8','9'}};
@@ -107,7 +127,7 @@ int main(){
     while (true)
     {
         print_board(board);
-        player_turn(board);
+        decide_player_turn(board);
     }
     
 
