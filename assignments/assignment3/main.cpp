@@ -63,6 +63,8 @@ void nodeAt(Node *root, int idx){
 }
 
 
+
+// create node
 Node *create_node(int elem){
     Node *new_node = new Node;
     new_node->elem = elem;
@@ -265,6 +267,43 @@ void removeNode(Node *root, int idx){
 
 
 
+// shifts the list to the left by 1 position.
+void shiftLeft(Node *root) {
+    if (root == nullptr || root->next == nullptr) {
+        return; // nothing to shift
+    }
+    Node* newRoot = root->next;
+    Node* tail = root;
+    while (tail->next != nullptr) {
+        tail = tail->next;
+    }
+    tail->next = root;
+    root->next = nullptr;
+    root = newRoot;
+    cout << "After shift left ==========="  <<endl;
+    printList(root);
+}
+
+
+
+// shifts the list to the right by 1 position.
+void shiftRight(Node* root) {
+    if (root == nullptr || root->next == nullptr) {
+        return; // nothing to shift
+    }
+    Node* tail = root;
+    while (tail->next->next != nullptr) {
+        tail = tail->next;
+    }
+    Node* newRoot = tail->next;
+    newRoot->next = root;
+    tail->next = nullptr;
+   
+    root = newRoot;
+}
+
+
+
 int main(){
     int arr[5] = {3,5,6,8,9};
 
@@ -289,6 +328,18 @@ int main(){
 
     Node* reversedRoot = reverseList(root);
     printList(reversedRoot);
+
+   
+    cout << "Before shift right ==========="  <<endl;
+    printList(root);
+    shiftRight(root);
+    cout << "After shift right ==========="  <<endl;
+    printList(root);
+
+
+    cout << "Before shift left ==========="  <<endl;
+    printList(root);
+    shiftLeft(root);
 
     return 0;
 }
