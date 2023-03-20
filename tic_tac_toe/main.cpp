@@ -121,10 +121,24 @@ void decide_player_turn(char board[3][3]){
 }
 
 
+
+// check is game is over
+bool game_over(char board[3][3]) {
+    // check who is win
+    for(int i =0; i<3; i++){
+        if(board[0][0] == board[0][1] && board[0][0] == board[0][2]){
+            return true;
+        }
+    }
+
+    return false;
+}
+
+
 int main(){
     char board[3][3] = {{'1','2','3'}, {'4','5','6'}, {'7','8','9'}};
-
-    while (true)
+    
+    while (!game_over(board))
     {
         print_board(board);
         decide_player_turn(board);
