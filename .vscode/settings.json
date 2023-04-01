@@ -51,5 +51,6 @@
     "plaintext": false,
     "markdown": true
   },
-  "cSpell.words": ["Favtutor"]
+  "cSpell.words": ["Favtutor"],
+  "C_Cpp.errorSquiggles": "disabled"
 }
