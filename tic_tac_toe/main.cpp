@@ -2,14 +2,13 @@
 
 using namespace std;
 
-char turn = 'X';
-bool is_success = true;
-
+char turn = 'X', who_win = ' ';
+bool is_success = true, is_game_over = false;
 
 
 // print error message
 void error_message(){
-    system("clear");
+    // system("clear");
     cout << "Invalid Choice ! " << endl; 
     cout << "Please Try again !!! " << endl;
     is_success = false;
@@ -21,7 +20,7 @@ void error_message(){
 // print the board
 void print_board(char board[3][3]){
     if(is_success){
-        system("clear");
+        // system("clear");
     }
     string player1 = "Player 1 [X]", player2 = "Player 2 [O]";
     
@@ -108,7 +107,6 @@ void decide_player_turn(char board[3][3]){
     
     if(turn == 'X' && (board[row][column] != 'X' && board[row][column] != 'O')) {
         board[row][column] = 'X';
-        cout << "Hit" << endl;
         turn = 'O';
         is_success = true;
     } else if(turn == 'O' && (board[row][column] != 'X' && board[row][column] != 'O')) {
@@ -118,16 +116,74 @@ void decide_player_turn(char board[3][3]){
     } else {
         error_message();
     }
+
+    // check if the game is draw
+    if(!is_game_over){
+        int count = 0;
+        for(int i = 0; i < 3; i++){
+            for(int j = 0; j < 3; j++){
+                if(board[i][j] == 'X' || board[i][j] == 'O'){
+                    count++;
+                }
+            }
+        }
+        cout << count << endl;
+        if(count == 9){
+            who_win = 'D';
+            is_game_over = true;
+        }
+    }
 }
 
+
+
+// who win
+void who_win_game(char board[3][3]){
+    for(int i = 0; i < 3; i++){
+        if(board[i][0] == board[i][1] && board[i][0] == board[i][2]){
+            who_win = board[i][0];
+            is_game_over = true;
+        }
+
+        if(board[0][i] == board[1][i] && board[0][i] == board[2][i]){
+            who_win = board[0][i];
+            is_game_over = true;
+        }
+    }
+
+
+    if(board[0][0] == board[1][1] && board[0][0] == board[2][2]){
+        who_win = board[0][0];
+        is_game_over = true;
+    }
+
+    if(board[0][2] == board[1][1] && board[0][2] == board[2][0]){
+        who_win = board[0][2];
+        is_game_over = true;
+    }
+}
 
 int main(){
     char board[3][3] = {{'1','2','3'}, {'4','5','6'}, {'7','8','9'}};
 
-    while (true)
+    while (!is_game_over)
     {
         print_board(board);
         decide_player_turn(board);
+       
+    }
+
+    
+
+    if(is_game_over){
+        who_win_game(board);
+        print_board(board);
+        cout << "Game Over" << endl;
+        if(who_win == 'D'){
+            cout << "Game is Draw" << endl;
+        } else {
+            cout << "Winner is " << who_win << endl;
+        }
     }
     
 
