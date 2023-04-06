@@ -45,12 +45,12 @@
     "streambuf": "cpp",
     "typeinfo": "cpp"
   },
-  "github.copilot.enable": {
-    "*": false,
-    "yaml": false,
-    "plaintext": false,
-    "markdown": true
-  },
-  "cSpell.words": ["Favtutor"],
-  "C_Cpp.errorSquiggles": "disabled"
+  // "github.copilot.enable": {
+  //   "*": false,
+  //   "yaml": false,
+  //   "plaintext": false,
+  //   "markdown": true
+  // },
+  "cSpell.words": ["Favtutor"]
+  // "C_Cpp.errorSquiggles": "disabled"
 }
