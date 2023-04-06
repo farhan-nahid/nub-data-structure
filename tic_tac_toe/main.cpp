@@ -190,10 +190,10 @@ int main(){
         who_win_game(board);
         print_board(board);
         if(who_win != ' '){
-            cout << "Game Over" << endl;
+            cout << endl << "Game Over" << endl;
             cout << "Winner is " << who_win << endl;
         } else {
-            cout << "Game is Draw" << endl;
+            cout << endl <<  "Game is Draw" << endl;
         }
     }
     
